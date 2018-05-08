@@ -1,0 +1,62 @@
+@import (reference) "~rework";
+
+.ant-input {
+  color: #b2b2b2;
+  background-color: #19191a;
+  border-color: #313233;
+
+  &:hover {
+    border-color: #24afff;
+  }
+
+  &:focus {
+    border-color: #24afff!important;
+  }
+
+  &:not(.ant-input-disabled) {
+    border-color: #19191a;
+  }
+
+  &-search-icon {
+    color: #b2b2b2;
+  }
+
+  &-group-addon {
+    border-color: #19191a;
+    background-color: #313233;
+  }
+}
+
+.ant-input-number,
+.ant-input-number-input,
+.ant-input-number-handler-wrap {
+  color: #b2b2b2!important;
+  background-color: #19191a!important;
+  border-color: #313233!important;
+}
+
+.ant-input-number-focused {
+  border-color: #24afff!important;
+}
+
+.ant-input-number-handler-down-inner,
+.ant-input-number-handler-up-inner {
+  color: #b2b2b2!important;
+}
+
+.ant-input-number-handler-down {
+  border-color: #313233!important;
+}
+
+.ant-input-number-handler {
+  &:active {
+   background-color: #24afff!important;
+ }
+
+   &.ant-input-number-handler-active {
+     .ant-input-number-handler-down-inner,
+     .ant-input-number-handler-up-inner {
+       color: #fff!important;
+     }
+   }
+}

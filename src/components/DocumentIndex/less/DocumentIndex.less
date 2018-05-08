@@ -1,0 +1,49 @@
+.groups {
+  & > h2 {
+    font-size: 18px;
+    color: #b2b2b2;
+    padding: 20px 20px 10px;
+  }
+}
+
+.view-grid {
+  position: relative;
+  margin: 0 10px;
+
+  & > li {
+    position: absolute;
+    width: 220px;
+    margin: 10px;
+    font-size: 12px;
+    background-color: #343536;
+    border: 1px solid #1c1c1c;
+
+    h2 {
+      padding: 8px;
+      font-size: 14px;
+      text-align: center;
+      color: #b2b2b2;
+    }
+
+    ul {}
+    li {
+      line-height: 25px;
+      border: 1px solid #1c1c1c;
+      margin: -1px;
+      color: #b2b2b2;
+
+      a {
+        display: block;
+        padding: 5px 10px;
+        color: #b2b2b2;
+        background-color: rgba(61,61,61,1);
+
+
+        &:hover {
+          background-color: rgba(61,61,61,.5);
+        }
+
+      }
+    }
+  }
+}

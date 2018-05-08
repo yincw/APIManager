@@ -1,0 +1,71 @@
+@import (reference) "~rework";
+
+
+.ant-table {
+  color: #b2b2b2!important;
+  background-color: #313233;
+  clear: none;
+
+  .ant-table-tbody>tr>td,
+  .ant-table-thead>tr>th {
+    padding: 10px;
+  }
+  .ant-table-thead>tr>th {
+    color: #b2b2b2;
+    background-color: #313233;
+    border-bottom-color: #1c1c1d;
+  }
+  .ant-table-tbody>tr>td {
+    border-bottom-color: #1c1c1d;
+  }
+
+  &.ant-table-bordered .ant-table-tbody>tr>td,
+  &.ant-table-bordered .ant-table-thead>tr>th {
+    border-right-color: #1c1c1d;
+  }
+
+  &.ant-table-bordered .ant-table-body>table,
+  &.ant-table-bordered .ant-table-fixed-left table,
+  &.ant-table-bordered .ant-table-fixed-right table,
+  &.ant-table-bordered .ant-table-header>table {
+    border-color: #1c1c1d;
+  }
+
+  &.ant-table-bordered .ant-table-thead>tr>th {
+    border-bottom-color: #1c1c1d;
+  }
+
+  .ant-table-tbody>tr.ant-table-row-selected td {
+    background-color: #29292a;
+  }
+
+  .ant-table-tbody>tr.ant-table-row-hover>td,
+  .ant-table-tbody>tr:hover>td,
+  .ant-table-thead>tr.ant-table-row-hover>td,
+  .ant-table-thead>tr:hover>td {
+    background:#29292a;
+  }
+
+  .ant-table-placeholder {
+    color: #b2b2b2;
+    background-color: #29292a;
+  }
+
+  &.ant-table-bordered.ant-table-empty .ant-table-placeholder {
+    border-left-color: #1c1c1d;
+    border-right-color: #1c1c1d;
+    border-bottom-color: #1c1c1d;
+  }
+
+  .ant-table-header,
+  &.ant-table-fixed-header>.ant-table-content>.ant-table-scroll>.ant-table-body {
+    background-color: transparent;
+  }
+
+  &.ant-table-fixed-header .ant-table-scroll .ant-table-header {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin-bottom: auto!important;
+  }
+
+}

@@ -1,0 +1,60 @@
+@import (reference) "~rework";
+
+
+.view-changelog {
+  position: relative;
+  height: 100%;
+  padding-top: 20px;
+
+  .markdown-body {
+    position: relative;
+    margin: 20px 52px;
+
+    color: #b2b2b2;
+    font-size: 14px;
+    padding-left: 25px;
+    padding-right: 20px;
+
+    &::before {
+      position: absolute;
+      left: 5px;
+      top: 0;
+      bottom: 0;
+
+      content: "";
+      display: block;
+      border-left: 2px solid #b2b2b2;
+    }
+  }
+
+  h2 {
+    position: relative;
+    margin: 20px 0 10px;
+    font-size: 22px;
+    color: #b2b2b2;
+
+    &::before {
+      position: absolute;
+      left: -24px;
+      top: 10px;
+
+      content: "";
+      display: block;
+      width: 10px;
+      height: 10px;
+      background-color: #b2b2b2;
+      border-radius: 50%;
+    }
+  }
+  p {
+    margin-bottom: 10px;
+  }
+  ul {
+    list-style-type: circle;
+    margin-left: 24px;
+  }
+  li {
+    line-height: 26px;
+  }
+  strong {}
+}

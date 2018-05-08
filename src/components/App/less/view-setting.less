@@ -1,0 +1,54 @@
+@import (reference) "~rework";
+
+
+.view-setting {
+  .clearfix();
+  padding: 20px;
+
+  &-menu {
+    float: left;
+    width: 160px;
+  }
+
+  &-container {
+    margin-left: 180px;
+
+    .workflow-container-cmd {
+      margin-bottom: 20px;
+    }
+
+    .ant-table-row-indent {
+      display: none;
+    }
+
+    .setting-show {
+
+      h3 {
+        color: #b2b2b2;
+        margin-bottom: 20px;
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      ul {
+        column-count: 3;
+        column-gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      li {
+        margin-bottom: 10px;
+      }
+
+      .ant-btn {
+        margin-bottom: 20px;
+      }
+
+    }
+
+  }
+}
+
+.ant-menu-inline, .ant-menu-vertical, .ant-menu-vertical-left {
+  border-right: none;
+}

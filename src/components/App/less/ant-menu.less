@@ -1,0 +1,41 @@
+
+.ant-menu {
+  background: #313233;
+  border: 1px solid #1c1c1d!important;
+
+  .ant-menu-item {
+    color: #b2b2b2;
+
+    &:active {
+      color: #25a2e9;
+      background-color: #3b3c3d;
+    }
+  }
+  &:not(.ant-menu-horizontal) {
+    .ant-menu-item {
+      &.ant-menu-item-selected {
+        color: #25a2e9;
+        background-color: #3b3c3d;
+      }
+    }
+  }
+}
+
+.ant-menu-inline .ant-menu-item,
+.ant-menu-inline .ant-menu-submenu-title,
+.ant-menu-vertical-left .ant-menu-item,
+.ant-menu-vertical-left .ant-menu-submenu-title,
+.ant-menu-vertical-right .ant-menu-item,
+.ant-menu-vertical-right .ant-menu-submenu-title,
+.ant-menu-vertical .ant-menu-item,
+.ant-menu-vertical .ant-menu-submenu-title {
+  margin: 0;
+}
+
+.ant-menu-inline .ant-menu-item:not(:last-child),
+.ant-menu-vertical-left .ant-menu-item:not(:last-child),
+.ant-menu-vertical-right .ant-menu-item:not(:last-child),
+.ant-menu-vertical .ant-menu-item:not(:last-child) {
+  margin-bottom: 0;
+  border-bottom: 1px solid #1c1c1d;
+}

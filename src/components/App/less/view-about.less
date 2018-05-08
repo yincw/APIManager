@@ -1,0 +1,48 @@
+@import (reference) "~rework";
+
+.view-about {
+  text-align: center;
+  padding: 30px 0 0 0;
+
+  .icon {
+    font-size: 50px;
+  }
+  .name {
+    font-size: 16px;
+    font-weight: normal;
+    color: #b2b2b2;
+    margin: 10px 0;
+  }
+  .version {
+    margin-bottom: 30px;
+  }
+  .developer {
+    // color: #444;
+    // border-top: 1px solid #b2b2b2;
+    // border-bottom: 1px solid #b2b2b2;
+
+    li {
+      display: inline-block;
+      // margin: 0 5px;
+      // padding: 0 10px;
+      line-height: 1;
+
+      &::after {
+        content: '、';
+        display: inline-block;
+      }
+
+      &:last-of-type,
+      &:first-of-type {
+        &::after {
+          content: ''
+        }
+      }
+    }
+  }
+  .copyright {
+    font-size: 12px;
+    margin-top: 30px;
+    color: #666;
+  }
+}

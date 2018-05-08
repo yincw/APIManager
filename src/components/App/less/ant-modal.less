@@ -1,0 +1,41 @@
+@import (reference) "~rework";
+
+
+.ant-modal {
+
+  &-content {
+    color: #b2b2b2;
+    background-color: #2c2d2e;
+  }
+      &-close {
+        color: #b2b2b2;
+
+        &-x {
+          width: 46px;
+          height: 46px;
+          line-height: 46px;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+          color: #c85050;
+        }
+      }
+      &-header {
+        padding: 12px 20px;
+        background-color: #313233;
+        border-bottom-color: #313233;
+      }
+        &-title {
+          color: #b2b2b2;
+        }
+
+  &-mask {
+    background-color: rgba(255,255,255,.2);
+  }
+}
+
+.ant-confirm-body .ant-confirm-title {
+  color: #b2b2b2;
+}

@@ -1,0 +1,31 @@
+@import (reference) "~rework";
+
+
+.react-contextmenu {
+  color: #b2b2b2;
+  background-color: #232324;
+  // border-radius: 5px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, .2);
+  padding: 5px 0;
+
+  .react-contextmenu-item {
+    min-width: 100px;
+    padding: 5px 20px;
+    line-height: 20px;
+
+    &:hover {
+      cursor: pointer;
+      color: #fff;
+      background-color: #24afff;
+    }
+  }
+
+  .react-contextmenu-item--divider {
+    border-top: 1px solid #353535;
+    padding: 0;
+    margin: 5px 0;
+  }
+
+  &.react-contextmenu--visible {}
+
+}

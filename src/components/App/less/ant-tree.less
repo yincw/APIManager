@@ -1,0 +1,139 @@
+@import (reference) "~rework";
+
+
+.ant-tree {
+
+  li {
+    // .clearfix();
+
+    .ant-tree-switcher {
+      float: left;
+    }
+
+    .ant-tree-node-content-wrapper {
+      display: block;
+      margin-left: 24px;
+      color: #b2b2b2;
+
+      &.ant-tree-node-selected {
+        background-color: transparent;
+        color: #40a9ff;
+
+        .sort-container {
+          color: #b2b2b2;
+        }
+      }
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+    .ant-tree-title {
+      display: block;
+    }
+
+    .doc {
+      position: relative;
+      display: flex;
+
+      &-icon,
+      &-name,
+      &-version {
+        display: inline-block;
+      }
+      &-name,
+      &-version {
+        line-height: 24px;
+      }
+      &-icon {
+        width: 18px;
+        height: 18px;
+        line-height: 1;
+        margin-right: 5px;
+        margin-top: 3px;
+      }
+      &-name {
+        .text-overflow-nowrap-ellipsis();
+        padding-right: 45px;
+      }
+      &-version {
+        position: absolute;
+        right: 5px;
+        top: 0;
+        color: #666;
+      }
+
+    }
+
+    .sort-container {
+      display: none;
+      position: absolute;
+      right: 5px;
+      top: 0;
+
+      .anticon {
+        margin: 0 3px;
+
+        &:hover {
+          color: #40a9ff;
+        }
+      }
+    }
+
+    .ant-tree-child-tree {
+      li {
+        .doc-name {
+          padding-right: 25px;
+        }
+      }
+    }
+
+    &:hover {
+      & .sort-container {
+        display: block;
+      }
+    }
+
+  }
+
+  &.ant-tree-show-line {
+
+    li {
+
+      &:not(:last-child):before {
+        border-color: #888;
+      }
+
+      span {
+        &.ant-tree-switcher {
+          color: #b2b2b2!important;
+          background-color: #313233!important;
+        }
+      }
+
+      &.type {
+        &-doc,
+        &-group {
+          span {
+            &.ant-tree-switcher {
+              &.ant-tree-switcher-noop:after {
+                content: "\E621";
+              }
+            }
+          }
+        }
+        &-api {
+          span {
+            &.ant-tree-switcher {
+              &.ant-tree-switcher-noop:after {
+                content: "\E664";
+              }
+            }
+          }
+        }
+      }
+
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@import (reference) "~rework";
+
+
+.view-result {
+  height: 100%;
+  padding: 30px;
+
+  h2 {
+    color: #b2b2b2;
+    margin-bottom: 30px;
+  }
+
+  .filter {
+    .clearfix();
+
+    .ant-input-search {
+      float: right;
+      width: 300px;
+    }
+  }
+
+  .result {
+    height: e('calc(100% - 102px)');
+  }
+
+  table {
+    table-layout: auto;
+  }
+
+}

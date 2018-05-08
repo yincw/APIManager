@@ -1,0 +1,80 @@
+@import (reference) "~rework";
+
+.view-dictionary {
+  & > h2 {
+    font-size: 18px;
+    color: #b2b2b2;
+    padding: 20px 20px 10px;
+    text-transform: uppercase;
+  }
+}
+
+.waterfall {
+  position: relative;
+  margin: 0 10px;
+
+  & > li {
+    position: absolute;
+    width: 220px;
+    margin: 10px;
+    font-size: 12px;
+    background-color: #343536;
+    border: 1px solid #1c1c1c;
+
+    h2 {
+      padding: 8px;
+      font-size: 14px;
+      text-align: center;
+      color: #b2b2b2;
+    }
+
+    ul {}
+    li {
+      position: relative;
+      line-height: 25px;
+      border: 1px solid #1c1c1c;
+      margin: -1px;
+      color: #b2b2b2;
+
+      // 1: current
+      // 2: new
+      // 3: deprecated
+      .api-status-1 {}
+      .api-status-2 {}
+      .api-status-3 {
+        opacity: 0.5;
+        text-decoration: line-through;
+      }
+
+      .status {
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        display: inline-block;
+        padding: 2px 4px;
+        line-height: 1;
+        color: #fff;
+        background-color: #24afff;
+        border-radius: 3px;
+        margin-top: 5px;
+      }
+
+      a {
+        .clearfix();
+        display: block;
+        .text-overflow-nowrap-ellipsis();
+        padding: 5px 50px 5px 10px;
+        color: #b2b2b2;
+        background-color: rgba(61,61,61,1);
+
+
+        &:hover {
+          background-color: rgba(61,61,61,.5);
+        }
+
+      }
+    }
+
+  }
+
+}

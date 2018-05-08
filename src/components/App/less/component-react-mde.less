@@ -1,0 +1,106 @@
+@import (reference) "~rework";
+
+
+.fa-heading {
+  &::before {
+    content: "\f1dc"
+  }
+}
+
+.react-mde {
+  border: 1px solid #1c1c1d;
+  background-color: #19191a;
+
+  button {
+    border: none;
+    background: transparent;
+    display: block;
+    width: 100%;
+
+    &:active {
+      outline: none;
+      color: #b2b2b2;
+      background-color: #1c1c1d;
+    }
+  }
+
+  &-dropdown {
+    position: absolute;
+    left: 1px;
+    top: 32px;
+    width: 100px;
+    background-color: #313233;
+
+    .mde-header-item {
+      position: relative;
+      float: none!important;
+      line-height: 1;
+      margin: 0!important;
+
+      button {
+        text-align: left;
+      }
+
+      p {
+        line-height: 1;
+
+        &.header-1 {
+          font-size: 20px;
+        }
+        &.header-2 {
+          font-size: 18px;
+        }
+        &.header-3 {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  .mde-header {
+    .clearfix();
+    background-color: #313233;
+
+    &-item {
+      float: left;
+      margin: 0 5px;
+
+      button {
+        padding: 5px;
+      }
+    }
+
+    &-group {
+      .clearfix();
+      float: left;
+      margin: 0 10px;
+    }
+
+  }
+
+  .mde-text {
+    color: #b2b2b2;
+  }
+
+  &-no-preview-layout {
+
+  }
+
+  .public-DraftEditor-content {
+    line-height: 24px;
+    min-height: 144px;
+    max-height: 288px;
+    overflow-y: auto;
+  }
+
+}
+
+
+.DraftEditor {
+  &-root {}
+  &-editorContainer {
+    padding: 10px;
+    min-height: 164px;
+  }
+
+}
