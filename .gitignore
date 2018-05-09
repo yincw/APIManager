@@ -1,4 +1,6 @@
+# dist
 .build
+release
 assets
 *-lock.json
 _*
