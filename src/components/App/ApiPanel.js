@@ -47,16 +47,17 @@ class ApiPanel extends React.Component {
         }
 
         if(values.compatibility) {
-          values.compatibility = JSON.stringify(values.compatibility)
+          values.compatibility = JSON.stringify(values.compatibility);
         }
 
         this.props.onOk && this.props.onOk(this.props.model, values);
+        this.props.form.resetFields();//清空提交的表单
       }
     })
   }
 
   handleClose = () => {
-    this.props.onClose();
+    this.props.onClose && this.props.onClose();
     this.props.form.resetFields();//清空提交的表单
   }
 
@@ -89,6 +90,7 @@ class ApiPanel extends React.Component {
   }
 
   render() {
+
     var model = this.props.model || {};
     var parentNode = this.props.parentNode || {};
     var documentNode = parentNode;
@@ -99,11 +101,7 @@ class ApiPanel extends React.Component {
     const { getFieldDecorator } = this.props.form;
    
     return (
-        <Panel
-          isOpened={this.props.isOpened}
-          title={model.id ? '编辑 API': '添加 API'}
-          onClose={this.handleClose}>
-          <div className="view-api">
+        <div className="view-api">
           <Scrollbars
             autoHide
             autoHideTimeout={1000}
@@ -260,8 +258,7 @@ class ApiPanel extends React.Component {
               </FormItem>
             </Form>
         </Scrollbars>
-        </div>
-        </Panel>
+      </div>
     );
   }
 }

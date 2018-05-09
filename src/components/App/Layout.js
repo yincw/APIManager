@@ -25,6 +25,7 @@ import TopNav from './TopNav';
 import TreeNav from './TreeNav';
 import ApiDetail from './ApiDetail';
 import LatitudeSearch from './LatitudeSearch';
+import Panel from '../Panel';
 
 const Option = Select.Option;
 const Search = Input.Search;
@@ -381,15 +382,18 @@ class App extends React.Component {
           onOk={this.handleCreateOrUpdateApi}
           onClose={() => this.setState({groupVisible:false, selectedGroup:{}})}/>
       }
-      {this.state.apiPanelVisible &&
-        <ApiPanel
-          isOpened={this.state.apiPanelVisible}
-          parentNode={this.state.parentNode}
-          model={this.state.selectedApi}
-          onOk={this.handleCreateOrUpdateApi}
-          onClose={() => this.setState({apiPanelVisible:false, selectedApi:{}})}/>
-      }
-      
+       <Panel
+        isOpened={this.state.apiPanelVisible}
+        onClose={() => this.setState({apiPanelVisible:false, selectedApi:{}})}>
+          { this.state.apiPanelVisible &&
+            <ApiPanel
+              model={this.state.selectedApi}
+              parentNode={this.state.parentNode}
+              onClose={() => this.setState({apiPanelVisible:false, selectedApi:{}})}
+              onOk={this.handleCreateOrUpdateApi} />
+          }
+      </Panel>
+
     </div>
     )
   }
