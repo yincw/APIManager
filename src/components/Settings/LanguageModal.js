@@ -63,15 +63,19 @@ class LanguageModal extends React.Component {
                 initialValue: model.name || ''
               })(<Input />)}
             </FormItem>
-            <FormItem
-              label="排序"
-              labelCol={{ span: 5 }}
-              wrapperCol={{ span: 12 }}
-              >
-              {getFieldDecorator('sort', {
-                initialValue: model.sort || 0
-              })(<InputNumber />)}
-            </FormItem>
+            {
+              !!model.id && 
+              <FormItem
+                label="排序"
+                labelCol={{ span: 5 }}
+                wrapperCol={{ span: 12 }}
+                >
+                {getFieldDecorator('sort', {
+                  initialValue: model.sort || 0
+                })(<InputNumber />)}
+              </FormItem>
+            }
+            
             <FormItem
               wrapperCol={{ span: 12, offset: 5 }}>
               <Button type="primary" onClick={this.handleSubmit} htmlType="submit">

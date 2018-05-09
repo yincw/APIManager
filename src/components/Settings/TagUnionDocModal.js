@@ -38,7 +38,7 @@ class TagUnionDocModal extends React.Component {
     var cb = evt.target;
     var documentsOfTag = this.props.documentsOfTag;
     if(cb.checked) {
-      documentsOfTag.push(cb.dataRef);
+      documentsOfTag.push(cb.dataref);
     } else {
       documentsOfTag = _.reject(documentsOfTag, each => each.id == cb.value);
     }
@@ -76,7 +76,7 @@ class TagUnionDocModal extends React.Component {
             onChange={this.handleSelectedChange}
             checked={this.isChecked(each.id)}
             key={each.id}
-            dataRef={each}
+            dataref={each}
             value={each.id}>
             {each.name}
           </Checkbox>

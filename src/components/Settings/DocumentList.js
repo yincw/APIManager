@@ -26,7 +26,7 @@ class DocumentList extends React.Component {
   }
 
   handleToggleDocument = (evt) => {
-    var payload = evt.target.dataRef;
+    var payload = evt.target.dataref;
     payload.isShow = !payload.isShow;
     this.props.dispatch({type:'document/reqToggleEnable', payload})
   }
@@ -63,7 +63,7 @@ class DocumentList extends React.Component {
               return (
                 <li key={Math.random()}>
                   <Checkbox
-                    dataRef={each}
+                    dataref={each}
                     onChange={this.handleToggleDocument}
                     checked={each.isShow}>
                     {each.name}

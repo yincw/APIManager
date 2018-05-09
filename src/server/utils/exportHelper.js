@@ -2,9 +2,9 @@ var path = require('path');
 var fs = require('fs');
 const fse = require('fs-extra')
 const uuidv1 = require('uuid/v1');
-var path = require('path');
 import { getPathByCWD, connectDb } from './common';
 var Promise = require('bluebird');
+import { app } from 'electron';
 var _ = require('lodash');
 
 import {zip} from './zipHelper';
@@ -69,7 +69,7 @@ async function handleExportData(destDir) {
   fse.ensureDirSync(tempOutDir);
   fse.ensureDirSync(getPathByCWD('assets'));
   var pathname = path.join(tempOutDir, 'database.sqlite');
-  await fse.copy(path.join(process.cwd(), 'database.sqlite'), pathname);
+  await fse.copy(path.join(app.getPath('userData'), 'database.sqlite'), pathname);
   
   await Promise.delay(100);
   var exportDb = connectDb(pathname);

@@ -28,9 +28,9 @@ let win;
 async function createWindow () {
 
   await db.sync().then(() => {
-    console.log('connect db success');
+    logger.info('connect db success');
   }).catch(err => {
-    console.log('connect db failed ' + err.message)
+    logger.info('connect db failed ' + err.message)
   });
 
   win = new BrowserWindow({

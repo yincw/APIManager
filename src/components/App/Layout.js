@@ -91,7 +91,7 @@ class App extends React.Component {
   }
 
   handleToggleDocument = (evt) => {
-    var payload = evt.target.dataRef;
+    var payload = evt.target.dataref;
     payload.isShow = !payload.isShow;
     this.props.dispatch({type:'document/reqToggleEnable', payload})
   }
@@ -185,45 +185,45 @@ class App extends React.Component {
   }
 
   handleShowUpdateModal = (evt, opt) => {
-    var dataRef = opt.dataRef;
-    if(!dataRef) return message.error('弹出编辑框错误');
-    var parentNode = this.getParent(dataRef);
-    if(_.has(dataRef, 'language_id')) {
+    var dataref = opt.dataref;
+    if(!dataref) return message.error('弹出编辑框错误');
+    var parentNode = this.getParent(dataref);
+    if(_.has(dataref, 'language_id')) {
       this.setState({
         parentNode:parentNode,
         documentVisible:true,
-        selectedDocument:dataRef
+        selectedDocument:dataref
       })
-    } else if(dataRef.type == 'api') {
+    } else if(dataref.type == 'api') {
       this.setState({
         parentNode:parentNode,
         apiPanelVisible:true,
-        selectedApi:dataRef
+        selectedApi:dataref
       }, () => {
-        this.props.dispatch({type: 'tag/reqGetTagsOfDocument', payload:{id: dataRef.document_id} });
-        this.props.dispatch({type: 'tag/reqGetTagsOfApi', payload:dataRef });
+        this.props.dispatch({type: 'tag/reqGetTagsOfDocument', payload:{id: dataref.document_id} });
+        this.props.dispatch({type: 'tag/reqGetTagsOfApi', payload:dataref });
       })
-    } else if(dataRef.type == 'group') {
+    } else if(dataref.type == 'group') {
       this.setState({
         parentNode:parentNode,
         groupVisible:true,
-        selectedGroup:dataRef
+        selectedGroup:dataref
       })
     }
   }
 
   handleShowCreateApiModal = (evt, opt) => {
-    var dataRef = opt.dataRef;
-    if(!dataRef) return message.error('弹出编辑框错误');
+    var dataref = opt.dataref;
+    if(!dataref) return message.error('弹出编辑框错误');
 
     this.setState({
-      parentNode:dataRef,
+      parentNode:dataref,
       apiPanelVisible:true,
       selectedApi:{}
     }, () => {
       this.props.dispatch({
         type: 'tag/reqGetTagsOfDocument',
-        payload:{id: dataRef.document_id || dataRef.id}
+        payload:{id: dataref.document_id || dataref.id}
       })
 
       this.props.dispatch({
@@ -234,11 +234,11 @@ class App extends React.Component {
   }
 
   handleShowCreateGroupModal = (evt, opt) => {
-    var dataRef = opt.dataRef;
-    if(!dataRef) return message.error('弹出编辑框错误');
+    var dataref = opt.dataref;
+    if(!dataref) return message.error('弹出编辑框错误');
 
     this.setState({
-      parentNode:dataRef,
+      parentNode:dataref,
       groupVisible:true,
       selectedGroup:{}
     })
@@ -246,7 +246,7 @@ class App extends React.Component {
 
   handleRemoveEntity = (evt, opt) => {
     const {dispatch} = this.props;
-    var payload = opt.dataRef;
+    var payload = opt.dataref;
     var type = _.has(payload, 'language_id') ? 'document/reqRemoveById' : 'api/reqRemoveById';
 
     Modal.confirm({
@@ -271,7 +271,7 @@ class App extends React.Component {
   }
 
   handleSelectDoc = (key, evt) => {
-    var dataRef = evt.node.props.dataRef;
+    var dataref = evt.node.props.dataref;
     if(!evt.selected) {
       this.setState({
         selectedDocument:{},
@@ -285,34 +285,34 @@ class App extends React.Component {
       return;
     }
 
-    if(!dataRef) return;
+    if(!dataref) return;
 
-    if(_.has(dataRef, 'language_id')) {
+    if(_.has(dataref, 'language_id')) {
       this.setState({
-        selectedDocument:dataRef,
+        selectedDocument:dataref,
         selectedApi:{},
         selectedGroup:{},
         selectedKeys:key,
       }, () => {
         //未了刷新页面 hack一个异步请求
         this.props.dispatch({type:'api/reqGetSelectedApi', payload: {selectedApi:{}}});
-        this.props.history.push(`/doc/${dataRef.id}?mid=${Math.random()}`);
+        this.props.history.push(`/doc/${dataref.id}?mid=${Math.random()}`);
       });
-    } else if(dataRef.type == 'api') {
+    } else if(dataref.type == 'api') {
       this.setState({
         selectedDocument:{},
-        selectedApi:dataRef,
+        selectedApi:dataref,
         selectedGroup:{},
         selectedKeys:key,
       }, () => {
-        this.props.dispatch({type:'tag/reqGetTagsOfApi', payload: dataRef});
+        this.props.dispatch({type:'tag/reqGetTagsOfApi', payload: dataref});
         this.props.history.push('/?mid=' + Math.random());
       })
-    } else if(dataRef.type == 'group') {
+    } else if(dataref.type == 'group') {
       this.setState({
         selectedDocument:{},
         selectedApi:{},
-        selectedGroup:dataRef,
+        selectedGroup:dataref,
         selectedKeys:key,
       }, () => {
         this.props.dispatch({type:'api/getSelectedApi', payload: {selectedApi:{}}});
@@ -323,13 +323,13 @@ class App extends React.Component {
   }
 
   handleSearchByName = (value, opt) => {
-    var dataRef = opt.props.api;
+    var dataref = opt.props.api;
     this.setState({
         selectedDocument:{},
-        selectedApi:dataRef,
+        selectedApi:dataref,
         selectedGroup:{},
       }, () => {
-        this.props.dispatch({type:'tag/reqGetTagsOfApi', payload: dataRef});
+        this.props.dispatch({type:'tag/reqGetTagsOfApi', payload: dataref});
         this.props.history.push('/?mid=' + Math.random());
       })
   }
@@ -381,12 +381,15 @@ class App extends React.Component {
           onOk={this.handleCreateOrUpdateApi}
           onClose={() => this.setState({groupVisible:false, selectedGroup:{}})}/>
       }
-      <ApiPanel
-        isOpened={this.state.apiPanelVisible}
-        parentNode={this.state.parentNode}
-        model={this.state.selectedApi}
-        onOk={this.handleCreateOrUpdateApi}
-        onClose={() => this.setState({apiPanelVisible:false, selectedApi:{}})}/>
+      {this.state.apiPanelVisible &&
+        <ApiPanel
+          isOpened={this.state.apiPanelVisible}
+          parentNode={this.state.parentNode}
+          model={this.state.selectedApi}
+          onOk={this.handleCreateOrUpdateApi}
+          onClose={() => this.setState({apiPanelVisible:false, selectedApi:{}})}/>
+      }
+      
     </div>
     )
   }

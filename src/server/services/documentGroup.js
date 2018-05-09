@@ -51,9 +51,16 @@ class DocumentGroupService extends BaseService {
 
   //如果不存在is_show=true的列 则添加的时候将is_show设置未true
   create = async (model) => {
-    var p = await this.Model.findOne({where:{is_show:true}, raw:true});
+    var p = await this.Model.findOne({where:{is_show:true}, raw: true});
     if(!p || !p.id) {
       model.is_show = 1;
+    } 
+
+    var lastSort = await this.Model.findOne({order:[['sort', 'DESC']], raw: true});
+    if(lastSort && lastSort.id) {
+      model.sort = lastSort.sort + 1;
+    } else {
+      model.sort = 0;
     }
 
     return this.Model.create(model);

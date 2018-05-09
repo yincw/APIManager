@@ -85,6 +85,17 @@ class TagService extends BaseService {
       return ret[0]
     });
   }
+
+  create = async (model) => {
+    var lastSort = await this.Model.findOne({order:[['sort', 'DESC']], raw: true});
+    if(lastSort && lastSort.id) {
+      model.sort = lastSort.sort + 1;
+    } else {
+      model.sort = 0;
+    }
+
+    return this.Model.create(model);
+  }
 }
 
 export default new TagService();

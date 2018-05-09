@@ -14,35 +14,7 @@ import ReactMde, { ReactMdeCommands, ReactMdeTypes } from 'react-mde';
 import * as Showdown from "showdown";
 import { Scrollbars } from 'react-custom-scrollbars';
 import _ from 'lodash';
-
-// import '../../assets/css/font-awesome.css';
-// import '../../assets/fonts/fontawesome-webfont.eot';
-// import '../../assets/fonts/fontawesome-webfont.svg';
-// import '../../assets/fonts/fontawesome-webfont.ttf';
-// import '../../assets/fonts/fontawesome-webfont.woff';
-// import '../../assets/fonts/fontawesome-webfont.woff2';
-
-
-function setCursorPosition(elem, index) {
-    var val = elem.value
-    var len = val.length
-
-    // 超过文本长度直接返回
-    if (len < index) return
-    setTimeout(function() {
-        elem.focus()
-        if (elem.setSelectionRange) { // 标准浏览器
-            elem.setSelectionRange(index, index)
-        } else { // IE9-
-            var range = elem.createTextRange()
-            range.moveStart("character", -len)
-            range.moveEnd("character", -len)
-            range.moveStart("character", index)
-            range.moveEnd("character", 0)
-            range.select()
-        }
-    }, 10)
-}
+import Promise from 'bluebird';
 
 class ApiPanel extends React.Component {
 
@@ -56,10 +28,9 @@ class ApiPanel extends React.Component {
   }
 
   componentWillMount() {
-    const { dispatch, model } = this.props;
   }
 
-  componentWillReceiveProps(nextProps, oldProps) {
+  componentWillReceiveProps() {
   }
 
   handleSubmit = (e) => {
@@ -98,32 +69,23 @@ class ApiPanel extends React.Component {
 
   textAreaProps ={
     id:'mdEditorArea',
-    onBlur: function(evt) {
+    onBlur: function() {
     },
-    onFocus: function(evt) {
+    onFocus: function() {
     },
-  }
-
-  handleChange =(evt)=> {
   }
 
   getCommands = () => {
     var cmds = ReactMdeCommands.getDefaultCommands()
     cmds = cmds.map(each => {
-      each = _(each).reject(item => item.icon == 'heading' || item.icon == 'link'|| item.icon == 'image')
+      each = _.reject(each, item => {
+        return item.buttonContent.props.icon === 'heading' || item.buttonContent.props.icon === 'image'
+      })
 
       return each;
     })
 
     return cmds;
-  }
-
-  handleValueChange = (mdeState: ReactMdeTypes.MdeState) => {
-    this.setState({mdeState});
-  }
-
-   handleValueChangex = (mdeState: ReactMdeTypes.MdeState) => {
-    this.setState({mdeStateX:mdeState});
   }
 
   render() {
@@ -133,17 +95,9 @@ class ApiPanel extends React.Component {
     if(documentNode.document_id) {
       documentNode = this.props.documents.find(each => each.id == documentNode.document_id) || {};
     }
+
     const { getFieldDecorator } = this.props.form;
-    const formItemLayout = {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 6 },
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 14 },
-      },
-    };
+   
     return (
         <Panel
           isOpened={this.props.isOpened}
@@ -183,9 +137,9 @@ class ApiPanel extends React.Component {
                 )}
               </FormItem>
 
-              {(parentNode.group_type !== 'class' &&
-              (this.props.form.getFieldsValue().object_type === 2
-                || this.props.form.getFieldsValue().object_type === 4)) &&
+              {(this.props.form.getFieldsValue().object_type == 2
+                || this.props.form.getFieldsValue().object_type == 4) &&
+                parentNode.group_type !== 'class' &&
                 <FormItem
                   label="静态类型名称"
                   labelCol={{ span: 4 }}
@@ -229,7 +183,6 @@ class ApiPanel extends React.Component {
                 wrapperCol={{ span: 12 }}
                 >
                 {getFieldDecorator('code', {
-                  rules: [{ required: true, message: 'Please input your note!' }],
                   getValueFromEvent: (evt) => {return evt;},
                   valuePropName:'editorState',
                   initialValue:{
@@ -237,6 +190,7 @@ class ApiPanel extends React.Component {
                   }
                 })(
                   <ReactMde
+                    commands={this.getCommands()}
                     layout='noPreview'
                     generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))}
                 />
@@ -293,6 +247,7 @@ class ApiPanel extends React.Component {
                 })(
                 <ReactMde
                   layout='noPreview'
+                  commands={this.getCommands()}
                   generateMarkdownPreview={(markdown) => Promise.resolve(this.converter.makeHtml(markdown))} />
                 )}
               </FormItem>

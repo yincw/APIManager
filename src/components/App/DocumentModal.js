@@ -49,39 +49,47 @@ class DocumentModal extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err,values)=>{
-      if(!err){
-        let src = values.icon;
-
-        //需要判断icon是否被修改了 如果被修改了则包含全路径 否则只有文件名
-        if(src.indexOf('/') > -1 || src.indexOf('\\') > -1) {
-          var filename = uuidv1() + path.extname(src);
-          values.icon =  filename;
-
-          var readStream = fs.createReadStream(src);
-
-          if (process.env.electronMode === 'dev' || process.env.electronMode === 'preview') {
-            // 开发模式
-            // 预览模式，打包前确认
-            if(!fs.existsSync(path.join(directory.production.envName, 'assets')))
-              fs.mkdirSync(path.join(directory.production.envName, 'assets'))
-            var dest = path.join(directory.production.envName, 'assets', filename);
-          } else {
-            // 打包模式
-            if(!fs.existsSync(path.join(process.resourcesPath, 'app', 'dist', 'assets')))
-              fs.mkdirSync(path.join(process.resourcesPath, 'app', 'dist', 'assets'))
-            var dest = path.join(process.resourcesPath, 'app', 'dist', 'assets', filename);
-          }
-
-          var writeStream = fs.createWriteStream(dest);
-          readStream.pipe(writeStream);
-        }
-        this.props.onOk && this.props.onOk(this.props.model, values);
+      if(err) {
+        remote.app.logger.warning(err.message);
+        return ;
       }
+
+      let src = values.icon;
+
+      //需要判断icon是否被修改了 如果被修改了则包含全路径 否则只有文件名
+      if(src.indexOf('/') > -1 || src.indexOf('\\') > -1) {
+        var filename = uuidv1() + path.extname(src);
+        values.icon =  filename;
+
+        var readStream = fs.createReadStream(src);
+
+        if (process.env.electronMode === 'dev' || process.env.electronMode === 'preview') {
+          // 开发模式
+          // 预览模式，打包前确认
+          if(!fs.existsSync(path.join(directory.production.envName, 'assets')))
+            fs.mkdirSync(path.join(directory.production.envName, 'assets'))
+          var dest = path.join(directory.production.envName, 'assets', filename);
+        } else {
+          // 打包模式
+          if(!fs.existsSync(path.join(process.resourcesPath, 'app', 'dist', 'assets')))
+            fs.mkdirSync(path.join(process.resourcesPath, 'app', 'dist', 'assets'))
+          var dest = path.join(process.resourcesPath, 'app', 'dist', 'assets', filename);
+        }
+
+        var writeStream = fs.createWriteStream(dest);
+        readStream.pipe(writeStream);
+      }
+      
+      this.props.onOk && this.props.onOk(this.props.model, values);
     })
   }
 
   normFile = (e) => {
-    return e.file && e.file.originFileObj ? e.file.originFileObj.path : '';
+    if (!e.file) return '';
+    if(e.file.path) return e.file.path;
+    if(e.file.originFileObj) return e.file.originFileObj.path;
+
+    return '';
   }
 
   handleClose = () => {
@@ -97,34 +105,23 @@ class DocumentModal extends React.Component {
 
     //已经设置的图像
     if(doc.icon.indexOf('/') == -1 && doc.icon.indexOf('\\') == -1) {
-
-      // if (process.env.electronMode === 'preview') {
-      //   pathname = path.join(directory.production.envName, 'assets', doc.icon);
-
-      // } else {
-      //   pathname = path.join(directory.production.envName, 'assets', doc.icon);
-      //   // pathname = path.join(process.resourcesPath, 'app', 'dist', 'assets', doc.icon);
-      // }
-
       pathname = path.join('assets', doc.icon)
-
-      // pathname = path.join(process.cwd(), 'assets', doc.icon)
       return <img src={ pathname } style={{width:25, height:25, marginLeft:'5px'}} id='doc_icon' />
     }
 
     var x = fs.readFileSync(doc.icon, 'base64');
-    return <img src={ 'data:image/png;base64,'+x } style={{width:25, height:25, marginLeft:'5px'}} id='doc_icon' />
+    return <img src={ 'data:image/png;base64,' + x } style={{width:25, height:25, marginLeft:'5px'}} id='doc_icon' />
   }
 
   initLangs = ()=> {
     return this.props.languages.map((each) => {
-      return <Option key={each.id} dataRef={each} value={each.id}>{each.name}</Option>
+      return <Option key={each.id} dataref={each} value={each.id}>{each.name}</Option>
     })
   }
 
   initGroups = ()=> {
     return this.props.documentGroups.map((each) => {
-      return <Option key={each.id} dataRef={each} value={each.id}>{each.name}</Option>
+      return <Option key={each.id} dataref={each} value={each.id}>{each.name}</Option>
     })
   }
 
@@ -133,8 +130,8 @@ class DocumentModal extends React.Component {
   }
 
   handleLanguageChange = (key, evt) => {
-    var dataRef = evt.props.dataRef;
-    this.props.form.setFieldsValue({language:dataRef.name});
+    var dataref = evt.props.dataref;
+    this.props.form.setFieldsValue({language:dataref.name});
   }
 
   render() {

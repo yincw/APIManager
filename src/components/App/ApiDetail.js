@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import dva, { connect } from 'dva';
 import { Link } from 'react-router-dom';
 import {Select, Input, Checkbox, message } from 'antd';
-import { remote } from 'electron';
+import { remote, shell } from 'electron';
 import { getName, sortApis } from '../../utils/common';
 import { apiStatus } from '../../utils/systemEnum';
 import Icon from '../Icon';
@@ -15,6 +15,7 @@ import next from './images/next.svg';
 // import importt from './images/importt.svg';
 // import exportt from './images/exportt.svg';
 import _ from 'lodash';
+import $ from 'jQuery';
 
 import XLink from './XLink';
 
@@ -25,6 +26,16 @@ class ApiDetail extends React.Component {
   }
 
   componentWillMount() {
+  }
+  componentWillUnmount() {
+    $('body').undelegate('.markdown-body a', 'click')
+  }
+
+  componentDidMount() {
+    $('body').delegate('.markdown-body a', 'click', function(evt) {
+      event.preventDefault();
+      shell.openExternal(evt.target.href)
+    })
   }
 
   componentWillReceiveProps(nextProps) {
@@ -173,7 +184,6 @@ class ApiDetail extends React.Component {
             autoHideTimeout={1000}
             autoHideDuration={200}>
             <div className="view-detail-container">
-
               <h2>
                 <span className="name">{getName(model, parent)}</span>
                 {this.getStatus(model.status)}

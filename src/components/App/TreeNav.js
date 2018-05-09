@@ -80,7 +80,7 @@ class TreeNav extends React.Component {
     const index = name.toLowerCase().indexOf(searchValue.toLowerCase());
     const beforeStr = name.substr(0, index);
     const afterStr = name.substr(index + searchValue.length);
-    var hl = name.substr(index, index + searchValue.length);
+    var hl = name.substr(index, searchValue.length);
     return <span>
       {beforeStr}
       <span style={{ color: '#f50' }}>{hl}</span>
@@ -88,9 +88,8 @@ class TreeNav extends React.Component {
     </span>
   }
 
-  getDocuments = (searchValue) => {
+  getDocuments = () => {
     var documents = this.props.documents;
-    var searchValue = this.state.searchValue;
     return documents.filter(each => each.isShow && each.is_group_show && this.documentHasChildren(each));
   }
   //sortFlag 0:向上 1:向下
@@ -190,7 +189,7 @@ class TreeNav extends React.Component {
           title={hasPermission() ? this.wrapperWithMenuTrigger(item, parent): this.noWrap(item, parent)}
           parent = {parent}
           key={item.id}
-          dataRef={item}>
+          dataref={item}>
             {this.renderTreeNodes(item)}
         </TreeNode>
       );
@@ -215,20 +214,21 @@ class TreeNav extends React.Component {
 
   wrapperWithMenuTrigger = (item, parent) => {
     var menuType = MENU_TYPE;
-    var name = getName(item, parent);
+    var pname = getName(item, parent);
+    var name = pname;
     if(parent && item && item.type == 'api') {
       menuType = MENU_TYPE2;
-      name = this.highLight(name);
+      name = this.highLight(pname);
     }
 
     return <ContextMenuTrigger
       id={menuType}
-      dataRef={item}
+      dataref={item}
       parent={parent}
       collect={(props) => (props)}>
       <div className='doc'>
         {item.icon && <img className="doc-icon" src={path.join('assets', item.icon)} />}
-        <span className="doc-name" title={name}>{name}</span>
+        <span className="doc-name" title={pname}>{name}</span>
         <span className="doc-version">{item.version}</span>
         {
           this.props.sortEnable &&
@@ -272,7 +272,7 @@ class TreeNav extends React.Component {
   }
 
   handleExpand = (expandedKeys, opt) => {
-    var xId = opt.node.props.dataRef.id;
+    var xId = opt.node.props.dataref.id;
     if(opt.expanded) {
       expandedKeys.push(xId);
     } else {
