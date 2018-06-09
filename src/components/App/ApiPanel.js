@@ -99,7 +99,7 @@ class ApiPanel extends React.Component {
     }
 
     const { getFieldDecorator } = this.props.form;
-   
+
     return (
         <div className="view-api">
           <Scrollbars
@@ -233,6 +233,7 @@ class ApiPanel extends React.Component {
                 })(<Compatibility />)}
               </FormItem>
               <FormItem
+                className="reference"
                 label="参考文献"
                 labelCol={{ span: 4 }}
                 wrapperCol={{ span: 12 }}>
