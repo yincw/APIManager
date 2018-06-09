@@ -6,7 +6,7 @@ import markdownItGithubToc from 'markdown-it-github-toc';
 import markdownItFootnote from 'markdown-it-footnote';
 import markdownItDeflist from 'markdown-it-deflist';
 import hljs from 'highlight.js';
-import 'highlight.js/styles/dracula.css';
+import 'highlight.js/styles/atom-one-dark.css';
 // import './less/markdown.less';
 
 const md = new MarkdownIt({

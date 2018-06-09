@@ -4,7 +4,7 @@ export default {
   productName: '',
   productVersion: '',
   prefix: '',
-  permission: true, // 0：没有任何权限 9：管理员权限
+  permission: true,
   sortEnable: false,
   host: {}
 };

@@ -2,6 +2,7 @@ import {app, BrowserWindow} from 'electron';
 import path from 'path';
 import url from 'url';
 import fs from 'fs';
+import MenuBuilder from './menu';
 
 import {default as xApi} from './server/services/api';
 import {default as xDocument} from './server/services/document';
@@ -34,14 +35,19 @@ async function createWindow () {
   });
 
   win = new BrowserWindow({
+    show: false,
     width: 1024,
     height: 768
   });
 
+  const menuBuilder = new MenuBuilder(win);
+
   if (process.env.electronMode === 'dev') {
     // 开发模式
     win.loadURL('http://localhost:3000/');
-    win.webContents.openDevTools();
+    // win.webContents.openDevTools();
+    win.setMenu(null);
+    // menuBuilder.buildMenu();
   } else if (process.env.electronMode === 'preview') {
     // 预览模式，打包前确认
     win.loadURL(url.format({
@@ -51,6 +57,7 @@ async function createWindow () {
     }));
     // win.webContents.openDevTools();
     win.setMenu(null);
+    // menuBuilder.buildMenu();
   } else {
     // 打包模式
     win.loadURL(url.format({
@@ -59,8 +66,13 @@ async function createWindow () {
       slashes: true
     }));
     // win.webContents.openDevTools();
-    win.setMenu(null);
+    menuBuilder.buildMenu();
   }
+
+  win.on('ready-to-show', () => {
+    win.show();
+    win.focus();
+  });
 
   win.on('closed', () => {
     win = null;
@@ -69,9 +81,9 @@ async function createWindow () {
 }
 
 app.on('window-all-closed', () => {
-  // if (process.platform !== 'darwin') {
+  if (process.platform !== 'darwin') {
     app.quit();
-  // }
+  }
 });
 
 app.on('ready', createWindow);
