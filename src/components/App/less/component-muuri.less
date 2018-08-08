@@ -1,11 +1,18 @@
 @import (reference) "~rework";
 
 .view-dictionary {
+  overflow: hidden;
+  height: 100%;
+
   & > h2 {
     font-size: 18px;
     color: #b2b2b2;
     padding: 20px 20px 10px;
     text-transform: uppercase;
+  }
+
+  &-container {
+    height: calc(100% - 52px);
   }
 }
 

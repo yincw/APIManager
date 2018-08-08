@@ -48,6 +48,7 @@ class App extends React.Component {
       latitudeSearchVisible:false,
       selectedGroup:{},
       apiPanelVisible:false,
+      addApi: false,
       selectedApi:{},
       selectedKeys:[],
 
@@ -199,6 +200,7 @@ class App extends React.Component {
       this.setState({
         parentNode:parentNode,
         apiPanelVisible:true,
+        addApi: false,
         selectedApi:dataref
       }, () => {
         this.props.dispatch({type: 'tag/reqGetTagsOfDocument', payload:{id: dataref.document_id} });
@@ -220,6 +222,7 @@ class App extends React.Component {
     this.setState({
       parentNode:dataref,
       apiPanelVisible:true,
+      addApi: true,
       selectedApi:{}
     }, () => {
       this.props.dispatch({
@@ -384,6 +387,7 @@ class App extends React.Component {
       }
        <Panel
         isOpened={this.state.apiPanelVisible}
+        title={ this.state.addApi == true ? '添加 API' : '编辑 API'}
         onClose={() => this.setState({apiPanelVisible:false, selectedApi:{}})}>
           { this.state.apiPanelVisible &&
             <ApiPanel

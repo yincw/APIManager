@@ -179,16 +179,15 @@ class ApiDetail extends React.Component {
     if(model && model.id) {
       return (
         <div className="view-detail">
+          <h2 className="api-name">
+            <span className="name">{getName(model, parent)}</span>
+            {this.getStatus(model.status)}
+          </h2>
+          <div className="view-detail-container">
           <Scrollbars
             autoHide
             autoHideTimeout={1000}
             autoHideDuration={200}>
-            <div className="view-detail-container">
-              <h2>
-                <span className="name">{getName(model, parent)}</span>
-                {this.getStatus(model.status)}
-              </h2>
-
               {/* 文档成熟度 */}
               {this.getVersionStatus(model.version_status)}
 
@@ -260,8 +259,8 @@ class ApiDetail extends React.Component {
                   <a disabled={this.checkCanNext()} href="javascript:void(0)" onClick={this.handleShowNext}><Icon glyph={next} /></a>
                 </li>
               </ul>
-          </div>
         </Scrollbars>
+        </div>
 
         </div>
       )

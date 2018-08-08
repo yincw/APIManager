@@ -9,6 +9,7 @@ import Muuri from 'muuri';
 // import './less/DocumentIndex.less';
 import IndexContent from './IndexContent';
 import XLink from '../App/XLink';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 class DocumentIndex extends React.Component {
 
@@ -110,13 +111,20 @@ class DocumentIndex extends React.Component {
     return (
       <div className="view-dictionary">
         <h2>{this.renderTitle(xDoc)}</h2>
-        {!this.props.loading.models.api &&
-          <IndexContent
-          documents={this.props.documents}
-          apis={this.props.apis}
-          xapis={this.formatData(xDoc, xApis)}
-          onApiClick={this.handleApiClick} />
-        }
+        <div className="view-dictionary-container">
+          <Scrollbars
+            autoHide
+            autoHideTimeout={1000}
+            autoHideDuration={200}>
+          {!this.props.loading.models.api &&
+            <IndexContent
+            documents={this.props.documents}
+            apis={this.props.apis}
+            xapis={this.formatData(xDoc, xApis)}
+            onApiClick={this.handleApiClick} />
+          }
+        </Scrollbars>
+        </div>
       </div>
     );
   }
