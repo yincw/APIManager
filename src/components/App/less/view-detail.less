@@ -109,45 +109,6 @@
     text-decoration: underline;
   }
 
-  table {
-    width: auto;
-    border-collapse: separate;
-    border-spacing: 4px;
-    background-color: rgba(242,232,213,1);
-
-    tr {
-      width: 100%;
-
-      &:hover {
-        background-color: rgba(228,218,200,1);
-      }
-    }
-    th,
-    td {
-      color: #333;
-      background-color: rgba(234,225,206,1);
-    }
-    th {
-      text-align: right;
-      padding: 8px;
-   }
-    td {
-      span {
-        display: block;
-        padding: 8px;
-        text-align: center;
-        color: #fff;
-
-        &.latest {
-          background-color: #39b54a;
-        }
-        &.old {
-          background-color: #A8BD04;
-        }
-      }
-    }
-  }
-
   ul,
   ol {
     margin-left: 2em;
@@ -194,6 +155,7 @@
     position: absolute;
     top: 0;
     right: 0;
+    z-index: 3;
     writing-mode: vertical-lr;
     line-height: 1.5;
     width: 36px;
@@ -292,6 +254,32 @@
         clear: both;
       }
     }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 4px;
+      background-color: rgba(0,0,0,.1);
+
+      tr {
+        border-bottom: 1px solid rgba(0,0,0,.2);
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: 8px;
+        color: #999;
+      }
+
+      th {
+        // border-bottom: 1px solid rgba(0,0,0,.2);
+     }
+
+      td {
+
+      }
+    }
   }
 
   .release-mobule-version {
@@ -307,6 +295,40 @@
     li {
       display: block;
       margin: 5px 0;
+    }
+
+    table {
+      width: auto;
+      border-collapse: separate;
+      border-spacing: 4px;
+      background-color: rgba(242,232,213,1);
+
+      tr {}
+
+      th,
+      td {
+        color: #333;
+        background-color: rgba(234,225,206,1);
+      }
+      th {
+        text-align: right;
+        padding: 8px;
+     }
+      td {
+        span {
+          display: block;
+          padding: 8px;
+          text-align: center;
+          color: #fff;
+
+          &.latest {
+            background-color: #39b54a;
+          }
+          &.old {
+            background-color: #A8BD04;
+          }
+        }
+      }
     }
   }
 
