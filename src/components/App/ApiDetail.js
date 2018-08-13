@@ -120,6 +120,7 @@ class ApiDetail extends React.Component {
     var payload = {
       selectedApi: prevApi
     }
+    this.props.dispatch({type:'tag/reqGetTagsOfApi', payload: prevApi});
 
     this.props.dispatch({type:'api/getSelectedApi', payload})
   }
@@ -161,6 +162,7 @@ class ApiDetail extends React.Component {
       selectedApi: nextApi
     }
 
+    this.props.dispatch({type:'tag/reqGetTagsOfApi', payload: nextApi});
     this.props.dispatch({type:'api/getSelectedApi', payload})
   }
 

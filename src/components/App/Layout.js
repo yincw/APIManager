@@ -338,8 +338,13 @@ class App extends React.Component {
       })
   }
 
+  handlePressEnter = (e) => {
+
+  }
+
   renderTree = () => {
     return <TreeNav
+      onPressEnter={this.handlePressEnter}
       onRemoveEntity={this.handleRemoveEntity}
       onShowUpdateModal={this.handleShowUpdateModal}
       onShowCreateApiModal={this.handleShowCreateApiModal}

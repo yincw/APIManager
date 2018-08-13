@@ -45,7 +45,7 @@ async function createWindow () {
   if (process.env.electronMode === 'dev') {
     // 开发模式
     win.loadURL('http://localhost:3000/');
-    // win.webContents.openDevTools();
+    win.webContents.openDevTools();
     win.setMenu(null);
     // menuBuilder.buildMenu();
   } else if (process.env.electronMode === 'preview') {
