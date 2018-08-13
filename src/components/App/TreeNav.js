@@ -256,7 +256,6 @@ class TreeNav extends React.Component {
   }
 
   handlePressEnter = (e) => {
-    console.log();
     var val = e.target.value;
     var keys = this.props.documents
       .filter(each => each.isShow && each.is_group_show)
@@ -269,6 +268,7 @@ class TreeNav extends React.Component {
 
     if(this.props.onPressEnter) {
       this.props.onPressEnter(x[0]);
+      // this.setState({searchValue: ''});
     }
   }
 
@@ -301,7 +301,7 @@ class TreeNav extends React.Component {
     })
   }
 
-  
+
 
   render() {
     var xDocs = this.getDocuments();

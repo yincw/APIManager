@@ -112,7 +112,7 @@ class ApiPanel extends React.Component {
               <FormItem
                 label="名称"
                 labelCol={{ span: 4 }}
-                wrapperCol={{ span: 12 }}>
+                wrapperCol={{ span: 16 }}>
                 {getFieldDecorator('name', {
                   rules: [{ required: true, message: 'API名称必须填写' }],
                   initialValue: model.name
@@ -121,7 +121,7 @@ class ApiPanel extends React.Component {
               <FormItem
                 label="模式"
                 labelCol={{ span: 4 }}
-                wrapperCol={{ span: 12 }}
+                wrapperCol={{ span: 16 }}
                 >
                 {getFieldDecorator('mode', {
                   rules: [{ required: true, message: '模式必须填写' }],
@@ -137,7 +137,7 @@ class ApiPanel extends React.Component {
                 <FormItem
                   label="类型"
                   labelCol={{ span: 4 }}
-                  wrapperCol={{ span: 12 }}
+                  wrapperCol={{ span: 16 }}
                   >
                   {getFieldDecorator('object_type', {
                     rules: [{ required: true, message: 'API类型必须填写' }],
@@ -161,7 +161,7 @@ class ApiPanel extends React.Component {
                 <FormItem
                   label="静态类型名称"
                   labelCol={{ span: 4 }}
-                  wrapperCol={{ span: 12 }}
+                  wrapperCol={{ span: 16 }}
                   >
                   {getFieldDecorator('class_name', {
                     rules: [{ required: true, message: 'API静态类型名称必须填写' }],
@@ -173,7 +173,7 @@ class ApiPanel extends React.Component {
               <FormItem
                 label="标签"
                 labelCol={{ span: 4 }}
-                wrapperCol={{ span: 12 }}
+                wrapperCol={{ span: 16 }}
                 >
                 {getFieldDecorator('tags', {
                   initialValue:  this.props.tagsOfApi.map(each => each.id) || []
@@ -186,7 +186,7 @@ class ApiPanel extends React.Component {
               <FormItem
                 label="API 状态"
                 labelCol={{ span: 4 }}
-                wrapperCol={{ span: 12 }}>
+                wrapperCol={{ span: 16 }}>
                 {getFieldDecorator('status', {
                   rules: [{ required: true, message: '库版本必须填写' }],
                   initialValue:  model.status || 1
@@ -197,11 +197,11 @@ class ApiPanel extends React.Component {
                 </RadioGroup>)}
               </FormItem>
               }
-               
+
               <FormItem
                 label={this.props.form.getFieldsValue().mode == 0 ? '用法':'内容'}
                 labelCol={{ span: 4 }}
-                wrapperCol={{ span: 12 }}
+                wrapperCol={{ span: 16 }}
                 >
                 {getFieldDecorator('code', {
                   getValueFromEvent: (evt) => {return evt;},
@@ -222,7 +222,7 @@ class ApiPanel extends React.Component {
               <FormItem
                 label="发布模块状态"
                 labelCol={{ span: 4 }}
-                wrapperCol={{ span: 12 }}>
+                wrapperCol={{ span: 16 }}>
                 {getFieldDecorator('release_status', {
                   initialValue:  model.release_status || ''
                 })(<Input />)}
@@ -233,7 +233,7 @@ class ApiPanel extends React.Component {
               <FormItem
                 label="发布文档版本"
                 labelCol={{ span: 4 }}
-                wrapperCol={{ span: 12 }}>
+                wrapperCol={{ span: 16 }}>
                 {getFieldDecorator('document_version', {
                   initialValue:  model.document_version || documentNode.version || ''
                 })(<Input />)}
@@ -244,7 +244,7 @@ class ApiPanel extends React.Component {
               <FormItem
                 label="文档成熟度"
                 labelCol={{ span: 4 }}
-                wrapperCol={{ span: 12 }}>
+                wrapperCol={{ span: 16 }}>
                 {getFieldDecorator('version_status', {
                   rules: [{ required: true, message: '文档成熟度必须填写' }],
                   initialValue: model.version_status || 1
@@ -261,7 +261,7 @@ class ApiPanel extends React.Component {
               <FormItem
                 label="兼容性"
                 labelCol={{ span: 4 }}
-                wrapperCol={{ span: 12 }}>
+                wrapperCol={{ span: 16 }}>
                 {getFieldDecorator('compatibility', {
                   initialValue:  _.isString(model.compatibility || '{}')?JSON.parse(model.compatibility || '{}'): model.compatibility,
                 })(<Compatibility />)}
@@ -271,7 +271,7 @@ class ApiPanel extends React.Component {
                 className="reference"
                 label="参考文献"
                 labelCol={{ span: 4 }}
-                wrapperCol={{ span: 12 }}>
+                wrapperCol={{ span: 16 }}>
                 {getFieldDecorator('refer_to', {
                   getValueFromEvent: (evt) => {return evt;},
                   valuePropName:'editorState',
@@ -286,7 +286,7 @@ class ApiPanel extends React.Component {
                 )}
               </FormItem>
               <FormItem
-                wrapperCol={{ span: 12, offset: 4 }}>
+                wrapperCol={{ span: 16, offset: 4 }}>
                 <Button type="primary" onClick={this.handleSubmit} htmlType="submit" className="mr10">
                   保 存
                 </Button>

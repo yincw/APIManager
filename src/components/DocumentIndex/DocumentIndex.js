@@ -102,6 +102,14 @@ class DocumentIndex extends React.Component {
     return `${parentNode.name} / ${api.name}`;
   }
 
+  getTotal = (item) => {
+    let total = 0;
+    item.map( ite => {
+      total += ite.children.length;
+    });
+    return total;
+  }
+
   render() {
     var xDoc = this.getCurrentDocument();
     var xApis = sortApis(this.props.apis);
@@ -112,7 +120,7 @@ class DocumentIndex extends React.Component {
     }
     return (
       <div className="view-dictionary">
-        <h2>{this.renderTitle(xDoc)}({xApis.filter(each => each.type == 'api').length})</h2>
+        <h2>{this.renderTitle(xDoc)}（{ this.getTotal( this.formatData(xDoc, xApis) ) }）</h2>
         <div className="view-dictionary-container">
           <Scrollbars
             autoHide
