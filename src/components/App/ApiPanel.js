@@ -100,6 +100,8 @@ class ApiPanel extends React.Component {
 
     const { getFieldDecorator } = this.props.form;
 
+    // console.log('zzzz', this.props.form.getFieldsValue('mode'))
+
     return (
         <div className="view-api">
           <Scrollbars
@@ -117,27 +119,45 @@ class ApiPanel extends React.Component {
                 })(<Input />)}
               </FormItem>
               <FormItem
-                label="类型"
+                label="模式"
                 labelCol={{ span: 4 }}
                 wrapperCol={{ span: 12 }}
                 >
-                {getFieldDecorator('object_type', {
-                  rules: [{ required: true, message: 'API类型必须填写' }],
-                  initialValue:  model.object_type || 0
+                {getFieldDecorator('mode', {
+                  rules: [{ required: true, message: '模式必须填写' }],
+                  initialValue:  model.mode || 0
                   })(<RadioGroup>
-                    <Radio value={0}>无</Radio>
-                    <Radio value={1}>原型方法</Radio>
-                    <Radio value={2}>静态方法</Radio>
-                    <Radio value={3}>原型属性</Radio>
-                    <Radio value={4}>静态属性</Radio>
-                    <Radio value={5}>对象</Radio>
+                    <Radio value={0}>API模式</Radio>
+                    <Radio value={1}>文档模式</Radio>
                   </RadioGroup>
                 )}
               </FormItem>
+              {
+                this.props.form.getFieldsValue().mode == 0 &&
+                <FormItem
+                  label="类型"
+                  labelCol={{ span: 4 }}
+                  wrapperCol={{ span: 12 }}
+                  >
+                  {getFieldDecorator('object_type', {
+                    rules: [{ required: true, message: 'API类型必须填写' }],
+                    initialValue:  model.object_type || 0
+                    })(<RadioGroup>
+                      <Radio value={0}>无</Radio>
+                      <Radio value={1}>原型方法</Radio>
+                      <Radio value={2}>静态方法</Radio>
+                      <Radio value={3}>原型属性</Radio>
+                      <Radio value={4}>静态属性</Radio>
+                      <Radio value={5}>对象</Radio>
+                    </RadioGroup>
+                  )}
+                </FormItem>
+              }
+
 
               {(this.props.form.getFieldsValue().object_type == 2
                 || this.props.form.getFieldsValue().object_type == 4) &&
-                parentNode.group_type !== 'class' &&
+                parentNode.group_type !== 'class' && this.props.form.getFieldsValue().mode == 0 &&
                 <FormItem
                   label="静态类型名称"
                   labelCol={{ span: 4 }}
@@ -161,7 +181,8 @@ class ApiPanel extends React.Component {
                     {this.initTags()}
                   </Select>)}
               </FormItem>
-
+              {
+                this.props.form.getFieldsValue().mode == 0 &&
               <FormItem
                 label="API 状态"
                 labelCol={{ span: 4 }}
@@ -175,8 +196,10 @@ class ApiPanel extends React.Component {
                   <Radio value={3}>废弃(deprecated)</Radio>
                 </RadioGroup>)}
               </FormItem>
+              }
+               
               <FormItem
-                label="用法"
+                label={this.props.form.getFieldsValue().mode == 0 ? '用法':'内容'}
                 labelCol={{ span: 4 }}
                 wrapperCol={{ span: 12 }}
                 >
@@ -194,6 +217,8 @@ class ApiPanel extends React.Component {
                 />
                 )}
               </FormItem>
+              {
+                this.props.form.getFieldsValue().mode == 0 &&
               <FormItem
                 label="发布模块状态"
                 labelCol={{ span: 4 }}
@@ -202,6 +227,9 @@ class ApiPanel extends React.Component {
                   initialValue:  model.release_status || ''
                 })(<Input />)}
               </FormItem>
+              }
+              {
+                this.props.form.getFieldsValue().mode == 0 &&
               <FormItem
                 label="发布文档版本"
                 labelCol={{ span: 4 }}
@@ -210,6 +238,9 @@ class ApiPanel extends React.Component {
                   initialValue:  model.document_version || documentNode.version || ''
                 })(<Input />)}
               </FormItem>
+              }
+              {
+                this.props.form.getFieldsValue().mode == 0 &&
               <FormItem
                 label="文档成熟度"
                 labelCol={{ span: 4 }}
@@ -224,6 +255,9 @@ class ApiPanel extends React.Component {
                     <Radio  value={3}>推荐(REC，Recommendation)</Radio>
                   </RadioGroup>)}
               </FormItem>
+              }
+              {
+                this.props.form.getFieldsValue().mode == 0 &&
               <FormItem
                 label="兼容性"
                 labelCol={{ span: 4 }}
@@ -232,6 +266,7 @@ class ApiPanel extends React.Component {
                   initialValue:  _.isString(model.compatibility || '{}')?JSON.parse(model.compatibility || '{}'): model.compatibility,
                 })(<Compatibility />)}
               </FormItem>
+              }
               <FormItem
                 className="reference"
                 label="参考文献"

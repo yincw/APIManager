@@ -255,6 +255,23 @@ class TreeNav extends React.Component {
     });
   }
 
+  handlePressEnter = (e) => {
+    console.log();
+    var val = e.target.value;
+    var keys = this.props.documents
+      .filter(each => each.isShow && each.is_group_show)
+      .map(each => each.id);
+
+    var x = this.props.apis
+      .filter(each => each.type === 'api' && keys.indexOf(each.document_id) > -1 && each.name.indexOf(val) >= 0);
+
+    x = _.sortBy(x, each => each.name.length);
+
+    if(this.props.onPressEnter) {
+      this.props.onPressEnter(x[0]);
+    }
+  }
+
   hasDocuments = () => {
     var documents = this.props.documents.filter(each => each.is_group_show);
     if(!documents || !documents.length) return false;
@@ -284,6 +301,8 @@ class TreeNav extends React.Component {
     })
   }
 
+  
+
   render() {
     var xDocs = this.getDocuments();
 
@@ -293,6 +312,7 @@ class TreeNav extends React.Component {
         <Input.Search
           value={this.state.searchValue}
           placeholder="输入关键字"
+          onPressEnter={this.handlePressEnter}
           onChange={this.handleSearchWord} />
         }
         <SpinCtrl effects={['document/reqRetrieve', 'api/reqRetrieve']}>

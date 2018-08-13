@@ -85,6 +85,9 @@ class SearchTree extends React.Component {
       autoExpandParent: true,
     });
   }
+
+  handleKeyDown = (e) => {
+  }
   render() {
     const { searchValue, expandedKeys, autoExpandParent } = this.state;
     const loop = data => data.map((item) => {
@@ -109,7 +112,7 @@ class SearchTree extends React.Component {
     });
     return (
       <div>
-        <Search style={{ marginBottom: 8 }} placeholder="Search" onChange={this.onChange} />
+        <Search style={{ marginBottom: 8 }} placeholder="Search" onChange={this.onChange} onPressEnter={this.handleKeyDown} />
         <Tree
           onExpand={this.onExpand}
           expandedKeys={expandedKeys}

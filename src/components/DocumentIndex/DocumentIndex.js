@@ -105,12 +105,14 @@ class DocumentIndex extends React.Component {
   render() {
     var xDoc = this.getCurrentDocument();
     var xApis = sortApis(this.props.apis);
+
+    console.log(xApis)
     if(!xDoc.is_group_show) {
       return <XLink />
     }
     return (
       <div className="view-dictionary">
-        <h2>{this.renderTitle(xDoc)}</h2>
+        <h2>{this.renderTitle(xDoc)}({xApis.filter(each => each.type == 'api').length})</h2>
         <div className="view-dictionary-container">
           <Scrollbars
             autoHide

@@ -14,5 +14,4 @@ var db = new Sequelize(config.database, config.user, config.password, {
   },
   storage:path.join(electron.app.getPath('userData'), 'database.sqlite')
 });
-
 module.exports = db;
