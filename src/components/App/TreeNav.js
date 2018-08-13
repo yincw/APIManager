@@ -256,10 +256,19 @@ class TreeNav extends React.Component {
   }
 
   handlePressEnter = (e) => {
-    console.log(e.target.value);
+    console.log();
+    var val = e.target.value;
+    var keys = this.props.documents
+      .filter(each => each.isShow && each.is_group_show)
+      .map(each => each.id);
+
+    var x = this.props.apis
+      .filter(each => each.type === 'api' && keys.indexOf(each.document_id) > -1 && each.name.indexOf(val) >= 0);
+
+    x = _.sortBy(x, each => each.name.length);
 
     if(this.props.onPressEnter) {
-      this.props.onPressEnter(e);
+      this.props.onPressEnter(x[0]);
     }
   }
 

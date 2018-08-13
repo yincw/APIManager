@@ -338,8 +338,20 @@ class App extends React.Component {
       })
   }
 
-  handlePressEnter = (e) => {
-
+  handlePressEnter = (dataref) => {
+    var api = dataref || {};
+    var keys = dataref && dataref.id ? [dataref.id] : [];
+    this.setState({
+      selectedDocument:{},
+      selectedApi:api,
+      selectedGroup:{},
+      selectedKeys:keys,
+    }, () => {
+      if (dataref && dataref.id) {
+        this.props.dispatch({type:'tag/reqGetTagsOfApi', payload: dataref});
+        this.props.history.push('/?mid=' + Math.random());
+      }
+    })
   }
 
   renderTree = () => {

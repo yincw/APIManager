@@ -23,6 +23,7 @@ var Api = db.define('Api', {
       },
     }, //排序
     code: { type: Sequelize.TEXT }, //示例代码
+    mode: { type: Sequelize.INTEGER }, //api模式 0:API模式 1：文档模式
     status: { type: Sequelize.INTEGER }, //api状态 new current
     release_status: { type: Sequelize.STRING(100) },//发布状态
     version_status: { type: Sequelize.INTEGER }, //文档成熟度 工作草案 候选推荐 推荐

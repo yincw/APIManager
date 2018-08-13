@@ -35,7 +35,7 @@ class IndexContent extends React.Component {
     return xApis.map((each, index) => {
       return (
         <li key={index + ''}>
-          <h2>{each.name}</h2>
+          <h2>{each.name}({each.children.length})</h2>
           <ul>
           {each.children.map( (item, gindex) => (
             <li key={index + '' + gindex}>
