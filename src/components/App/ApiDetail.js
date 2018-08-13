@@ -214,7 +214,7 @@ class ApiDetail extends React.Component {
               }
 
               {
-                model.release_status && model.code == 0 &&
+                model.release_status && model.mode == 0 &&
                 <div className="release-mobule-version">
                   <h3><span>发布模块状态</span></h3>
                   <p>{model.release_status}</p>
@@ -222,7 +222,7 @@ class ApiDetail extends React.Component {
               }
 
               {
-                model.document_version && model.code == 0 &&
+                model.document_version && model.mode == 0 &&
                 <div className="release-version">
                   <h3><span>发布文档版本</span></h3>
                   <p>{model.document_version}</p>
@@ -230,7 +230,7 @@ class ApiDetail extends React.Component {
               }
 
               {
-                compatibility && !_.isEmpty(compatibility) && model.code == 0 &&
+                compatibility && !_.isEmpty(compatibility) && model.mode == 0 &&
                 <div className="compatibility">
                   <h3><span>兼容性</span></h3>
                   <table>
