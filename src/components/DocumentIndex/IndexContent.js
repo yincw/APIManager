@@ -8,6 +8,9 @@ import { Modal, Select, Input, Form,
   Table, Radio, message, Tooltip } from 'antd';
 import Muuri from 'muuri';
 // import './less/DocumentIndex.less';
+import MarkdownIt from 'markdown-it';
+
+let md = new MarkdownIt();
 
 class IndexContent extends React.Component {
 
@@ -29,6 +32,12 @@ class IndexContent extends React.Component {
     return _.find(this.props.apis, each => each.id == api.parent_id);
   }
 
+  getStr = (code, start, end) => {
+    let str = "" + md.render(code);
+    let text = str.trim().replace(/<[\/\!]*[^<>]*>/ig,"").split('\n');
+    return text[0].substring(start, end);
+  }
+
   renderCtrl = () => {
     var xApis = this.props.xapis;
     if(!xApis) return;
@@ -41,7 +50,8 @@ class IndexContent extends React.Component {
             <li key={index + '' + gindex}>
               <a title={getName(item, this.getParent(item))} className={`api-status-${item.status}`} href="javascript:;" onClick={this.props.onApiClick.bind(this, item)}>
 
-                {getName(item, this.getParent(item))}
+                <span className="name">{getName(item, this.getParent(item))}</span>
+                <span className="description">{this.getStr(item.code, 16, -15)}</span>
 
                 {
                   item.status ===2 &&

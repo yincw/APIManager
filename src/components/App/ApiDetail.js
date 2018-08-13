@@ -183,13 +183,13 @@ class ApiDetail extends React.Component {
             <span className="name">{getName(model, parent)}</span>
             {this.getStatus(model.status)}
           </h2>
+          {/* 文档成熟度 */}
+          {this.getVersionStatus(model.version_status)}
           <div className="view-detail-container">
           <Scrollbars
             autoHide
             autoHideTimeout={1000}
             autoHideDuration={200}>
-              {/* 文档成熟度 */}
-              {this.getVersionStatus(model.version_status)}
 
               <ul className="tags">
                 {
@@ -250,16 +250,16 @@ class ApiDetail extends React.Component {
                   <Markdown content={model.refer_to || ''} />
                 </div>
               }
-
-              <ul className="nav">
-                <li>
-                  <a disabled={this.checkCanPrev()} href="javascript:void(0)" onClick={this.handleShowPrev}><Icon glyph={prev} /></a>
-                </li>
-                <li>
-                  <a disabled={this.checkCanNext()} href="javascript:void(0)" onClick={this.handleShowNext}><Icon glyph={next} /></a>
-                </li>
-              </ul>
         </Scrollbars>
+
+          <ul className="nav">
+            <li>
+              <a disabled={this.checkCanPrev()} href="javascript:void(0)" onClick={this.handleShowPrev}><Icon glyph={prev} /></a>
+            </li>
+            <li>
+              <a disabled={this.checkCanNext()} href="javascript:void(0)" onClick={this.handleShowNext}><Icon glyph={next} /></a>
+            </li>
+          </ul>
         </div>
 
         </div>
