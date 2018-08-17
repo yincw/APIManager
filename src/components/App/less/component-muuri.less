@@ -29,15 +29,22 @@
     border: 1px solid #1c1c1c;
 
     h2 {
-      .clearfix();
+      position: relative;
       padding: 8px 10px;
       font-size: 14px;
-      text-align: left;
       color: #b2b2b2;
 
-      .total {
+      .name {
         display: block;
-        float: right;
+        margin-right: 24px;
+        .text-overflow-nowrap-ellipsis();
+      }
+
+      .total {
+        position: absolute;
+        right: 10px;
+        top: 8px;
+        display: block;
         font-size: 12px;
       }
     }
@@ -64,6 +71,7 @@
 
       span {
         display: block;
+        .text-overflow-nowrap-ellipsis();
       }
 
       .name {
