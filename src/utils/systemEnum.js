@@ -13,9 +13,9 @@ const apiStatus ={
   1:'current',
   2:'new',
   3:'deprecated',
+  4:'warning'
 }
 
 export {
   gender,enabledMark, apiStatus
 }
-

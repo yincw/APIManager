@@ -93,12 +93,12 @@ class ApiPanel extends React.Component {
 
     switch (field) {
       case 3:
-        // 警告
-        return '警告版本';
-        break;
-      case 4:
         // 废弃
         return '废弃版本';
+        break;
+      case 4:
+        // 警告
+        return '警告版本';
         break;
       default:
         // 1：当前

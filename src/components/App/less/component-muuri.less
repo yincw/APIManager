@@ -60,12 +60,43 @@
       // 1: current
       // 2: new
       // 3: deprecated
-      .api-status-1 {}
-      .api-status-2 {}
-      .api-status-3 {
-        opacity: 0.5;
-        .name {
-          text-decoration: line-through;
+      // 4: warning
+      .status {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        display: block;
+        color: #fff;
+
+        width: 6px;
+        height: 6px;
+        border-radius: 3px;
+      }
+
+      .api-status {
+        &-1 {
+          .status {
+            background-color: transparent;
+          }
+        }
+        &-2 {
+          .status {
+            background-color: #24afff;
+          }
+        }
+        &-3 {
+          opacity: 0.5;
+          .name {
+            text-decoration: line-through;
+          }
+          .status {
+            background-color: transparent;
+          }
+        }
+        &-4 {
+          .status {
+            background-color: #e0b922;
+          }
         }
       }
 
@@ -80,19 +111,6 @@
 
       .description {
         color: rgba(90,90,90,1);
-      }
-
-      .status {
-        position: absolute;
-        right: 10px;
-        top: 3px;
-        display: inline-block;
-        padding: 2px 4px;
-        line-height: 1;
-        color: #fff;
-        background-color: #24afff;
-        border-radius: 3px;
-        margin-top: 5px;
       }
 
       a {

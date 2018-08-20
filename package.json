@@ -1,6 +1,6 @@
 {
   "name": "APIManager",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "API 文档管理平台",
   "main": "./dist/main.js",
   "scripts": {

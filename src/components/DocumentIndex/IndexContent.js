@@ -52,14 +52,7 @@ class IndexContent extends React.Component {
 
                 <span className="name">{getName(item, this.getParent(item))}</span>
                 <span className="description">{this.getStr(item.code, 20, -19)}</span>
-
-                {
-                  item.status ===2 &&
-                  <span className="status">
-                    {apiStatus[item.status+'']}
-                  </span>
-                }
-
+                <span className="status"></span>
               </a>
             </li>
           ))}
