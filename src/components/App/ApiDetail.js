@@ -73,12 +73,24 @@ class ApiDetail extends React.Component {
     status = status || 1;
     var name = apiStatus[status+''];
 
-    if (status === 2) {
-      return <sup className="new" onClick={() => { this.handleSearchApis({ status, name }); }}>new</sup>
+    switch (status) {
+      case 2:
+        // 警告
+        return <sup className="new" onClick={() => { this.handleSearchApis({ status, name }); }}>New</sup>
+        break;
+      case 3:
+        // 警告
+        return <sup className="deprecated" onClick={() => { this.handleSearchApis({ status, name }); }}>Deprecated</sup>
+        break;
+      case 4:
+        // 废弃
+        return <sup className="warning" onClick={() => { this.handleSearchApis({ status, name }); }}>Warning</sup>
+        break;
+      default:
+        // 1：当前
+        return ;
     }
-    if (status === 3) {
-      return <sup className="deprecated" onClick={() => { this.handleSearchApis({ status, name }); }}>deprecated</sup>
-    }
+
   }
 
   handleSearchApis = (tag) => {

@@ -89,6 +89,24 @@ class ApiPanel extends React.Component {
     return cmds;
   }
 
+  getApiStatus(field) {
+
+    switch (field) {
+      case 3:
+        // 警告
+        return '警告版本';
+        break;
+      case 4:
+        // 废弃
+        return '废弃版本';
+        break;
+      default:
+        // 1：当前
+        // 2：新增
+        return '发布版本';
+    }
+  }
+
   render() {
 
     var model = this.props.model || {};
@@ -127,7 +145,7 @@ class ApiPanel extends React.Component {
                   rules: [{ required: true, message: '模式必须填写' }],
                   initialValue:  model.mode || 0
                   })(<RadioGroup>
-                    <Radio value={0}>API模式</Radio>
+                    <Radio value={0}>API 模式</Radio>
                     <Radio value={1}>文档模式</Radio>
                   </RadioGroup>
                 )}
@@ -191,9 +209,10 @@ class ApiPanel extends React.Component {
                   rules: [{ required: true, message: '库版本必须填写' }],
                   initialValue:  model.status || 1
                 })(<RadioGroup>
-                  <Radio value={1}>当前(current)</Radio>
-                  <Radio value={2}>新增(new)</Radio>
-                  <Radio value={3}>废弃(deprecated)</Radio>
+                  <Radio value={1}>当前（Current）</Radio>
+                  <Radio value={2}>新增（New）</Radio>
+                  <Radio value={3}>废弃（Deprecated）</Radio>
+                  <Radio value={4}>警告（Warning）</Radio>
                 </RadioGroup>)}
               </FormItem>
               }
@@ -218,7 +237,7 @@ class ApiPanel extends React.Component {
                 )}
               </FormItem>
               {
-                this.props.form.getFieldsValue().mode == 0 &&
+                this.props.form.getFieldsValue().status == 0 &&
               <FormItem
                 label="发布模块状态"
                 labelCol={{ span: 4 }}
@@ -231,7 +250,9 @@ class ApiPanel extends React.Component {
               {
                 this.props.form.getFieldsValue().mode == 0 &&
               <FormItem
-                label="发布文档版本"
+                label={
+                  this.getApiStatus(this.props.form.getFieldsValue().status)
+                }
                 labelCol={{ span: 4 }}
                 wrapperCol={{ span: 16 }}>
                 {getFieldDecorator('document_version', {
@@ -250,9 +271,9 @@ class ApiPanel extends React.Component {
                   initialValue: model.version_status || 1
                 })(
                   <RadioGroup>
-                    <Radio  value={1}>工作草案(WD，Working Draft)</Radio>
-                    <Radio  value={2}>候选推荐(CR，Candidate Recommendation)</Radio>
-                    <Radio  value={3}>推荐(REC，Recommendation)</Radio>
+                    <Radio  value={1}>工作草案（WD，Working Draft）</Radio>
+                    <Radio  value={2}>候选推荐（CR，Candidate Recommendation）</Radio>
+                    <Radio  value={3}>推荐（REC，Recommendation）</Radio>
                   </RadioGroup>)}
               </FormItem>
               }
