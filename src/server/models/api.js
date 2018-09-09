@@ -22,6 +22,7 @@ var Api = db.define('Api', {
         return new Date().getTime();
       },
     }, //排序
+    description: {type: Sequelize.STRING(100)}, // 功能描述
     code: { type: Sequelize.TEXT }, //示例代码
     mode: { type: Sequelize.INTEGER }, //api模式 0:API模式 1：文档模式
     status: { type: Sequelize.INTEGER }, //api状态 new current

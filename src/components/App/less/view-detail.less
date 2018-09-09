@@ -100,6 +100,10 @@
 
   pre {
     padding: 10px 0;
+
+    code {
+      padding: 0;
+    }
   }
 
   code {
@@ -152,6 +156,10 @@
       }
 
     }
+  }
+
+  .description {
+    margin: 0;
   }
 
   .doc-maturity {
@@ -252,10 +260,24 @@
         }
       }
 
+      blockquote {
+        p {
+          margin: 0 0 0 10px;
+        }
+      }
+
       p {
         margin-bottom: 10px;
         clear: both;
       }
+
+      h2 {
+        code {
+          margin-left: 10px;
+        }
+      }
+
+
     }
 
     table {

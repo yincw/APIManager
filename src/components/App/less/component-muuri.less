@@ -22,7 +22,13 @@
 
   & > li {
     position: absolute;
+
     width: 220px;
+
+    @media (min-width: 1065px) {
+      width: 250px;
+    }
+
     margin: 10px;
     font-size: 12px;
     background-color: #343536;
@@ -57,45 +63,45 @@
       margin: -1px;
       color: #b2b2b2;
 
-      // 1: current
-      // 2: new
-      // 3: deprecated
-      // 4: warning
       .status {
         position: absolute;
-        right: 10px;
-        top: 10px;
+        left: 0px;
+        top: 0px;
         display: block;
         color: #fff;
 
-        width: 6px;
-        height: 6px;
-        border-radius: 3px;
+        width: 0;
+        height: 0;
+        border: 4px solid transparent;
+        // border-radius: 3px;
       }
 
       .api-status {
         &-1 {
-          .status {
-            background-color: transparent;
-          }
+          // 1: current
+          .status {}
         }
         &-2 {
+          // 2: new
           .status {
-            background-color: #24afff;
+            border-top-color: #24afff;
+            border-left-color: #24afff;
           }
         }
         &-3 {
+          // 3: deprecated
           opacity: 0.5;
+
           .name {
             text-decoration: line-through;
           }
-          .status {
-            background-color: transparent;
-          }
+          .status {}
         }
         &-4 {
+          // 4: warning
           .status {
-            background-color: #e0b922;
+            border-top-color: #e0b922;
+            border-left-color: #e0b922;
           }
         }
       }

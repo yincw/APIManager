@@ -92,6 +92,8 @@ class TagUnionDocModal extends React.Component {
         onCancel={this.handleClose}
         title={'关联文档'}
         visible={true}
+        centered
+        width={760}
         footer={null}>
         <ul className="view-tag">
           {this.renderGroups()}

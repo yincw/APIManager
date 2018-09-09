@@ -190,6 +190,7 @@ class ApiDetail extends React.Component {
     var model = this.props.selectedApi || {};
     var parent = this.getParent(model);
     var compatibility = JSON.parse(model.compatibility || '{}');
+
     if(model && model.id) {
       return (
         <div className="view-detail">
@@ -204,6 +205,11 @@ class ApiDetail extends React.Component {
             autoHideTimeout={1000}
             autoHideDuration={200}>
 
+            {model.description &&
+            <p className="description">{model.description}</p>
+            }
+
+            { this.props.tagsOfApi.length !== 0 &&
               <ul className="tags">
                 {
                   this.props.tagsOfApi.map( (each, index) => {
@@ -215,27 +221,28 @@ class ApiDetail extends React.Component {
                   })
                 }
               </ul>
+            }
 
-              {
-                model.code &&
-                <div className="example">
-                  <h3><span>使用示例</span></h3>
-                  <Markdown content={model.code || ''} />
-                </div>
-              }
+            {
+              model.code &&
+              <div className="example">
+                <h3><span>用法</span></h3>
+                <Markdown content={model.code || ''} />
+              </div>
+            }
 
-              {
+              {/* {
                 model.release_status && model.mode == 0 &&
                 <div className="release-mobule-version">
                   <h3><span>发布模块状态</span></h3>
                   <p>{model.release_status}</p>
                 </div>
-              }
+              } */}
 
               {
                 model.document_version && model.mode == 0 &&
                 <div className="release-version">
-                  <h3><span>发布文档版本</span></h3>
+                  <h3><span>文档版本</span></h3>
                   <p>{model.document_version}</p>
                 </div>
               }

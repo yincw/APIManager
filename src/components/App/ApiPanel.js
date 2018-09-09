@@ -136,6 +136,7 @@ class ApiPanel extends React.Component {
                   initialValue: model.name
                 })(<Input />)}
               </FormItem>
+
               <FormItem
                 label="模式"
                 labelCol={{ span: 4 }}
@@ -150,6 +151,7 @@ class ApiPanel extends React.Component {
                   </RadioGroup>
                 )}
               </FormItem>
+
               {
                 this.props.form.getFieldsValue().mode == 0 &&
                 <FormItem
@@ -171,7 +173,6 @@ class ApiPanel extends React.Component {
                   )}
                 </FormItem>
               }
-
 
               {(this.props.form.getFieldsValue().object_type == 2
                 || this.props.form.getFieldsValue().object_type == 4) &&
@@ -199,6 +200,7 @@ class ApiPanel extends React.Component {
                     {this.initTags()}
                   </Select>)}
               </FormItem>
+
               {
                 this.props.form.getFieldsValue().mode == 0 &&
               <FormItem
@@ -214,6 +216,18 @@ class ApiPanel extends React.Component {
                   <Radio value={3}>废弃（Deprecated）</Radio>
                   <Radio value={4}>警告（Warning）</Radio>
                 </RadioGroup>)}
+              </FormItem>
+              }
+
+              {
+                this.props.form.getFieldsValue().mode == 0 &&
+              <FormItem
+                label="功能描述"
+                labelCol={{ span: 4 }}
+                wrapperCol={{ span: 16 }}>
+                {getFieldDecorator('description', {
+                  initialValue: model.description
+                })(<Input />)}
               </FormItem>
               }
 
@@ -236,7 +250,8 @@ class ApiPanel extends React.Component {
                 />
                 )}
               </FormItem>
-              {
+
+              {/* {
                 this.props.form.getFieldsValue().status == 0 &&
               <FormItem
                 label="发布模块状态"
@@ -246,7 +261,8 @@ class ApiPanel extends React.Component {
                   initialValue:  model.release_status || ''
                 })(<Input />)}
               </FormItem>
-              }
+              } */}
+
               {
                 this.props.form.getFieldsValue().mode == 0 &&
               <FormItem

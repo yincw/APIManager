@@ -44,14 +44,14 @@ class IndexContent extends React.Component {
     return xApis.map((each, index) => {
       return (
         <li key={index + ''}>
-          <h2><span className="name">{each.name}</span> <span className="total">{each.children.length}</span></h2>
+          <h2><span className="name" title={each.name}>{each.name}</span> <span className="total">{each.children.length}</span></h2>
           <ul>
           {each.children.map( (item, gindex) => (
             <li key={index + '' + gindex}>
               <a title={getName(item, this.getParent(item))} className={`api-status-${item.status}`} href="javascript:;" onClick={this.props.onApiClick.bind(this, item)}>
 
                 <span className="name">{getName(item, this.getParent(item))}</span>
-                <span className="description">{this.getStr(item.code, 20, -19)}</span>
+                <span className="description">{item.description || this.getStr(item.code, 20, -19)}</span>
                 <span className="status"></span>
               </a>
             </li>

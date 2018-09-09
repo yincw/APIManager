@@ -26,7 +26,7 @@ export default [
       }, {
         key: '7',
         name: 'DOM',
-        address: '归类'
+        address: '归档'
       }, {
         key: '8',
         name: '<test>',
@@ -58,7 +58,7 @@ export default [
       }, {
         key: '7',
         name: 'DOM',
-        address: '归类'
+        address: '归档'
       }, {
         key: '8',
         name: '<test>',

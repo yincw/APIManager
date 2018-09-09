@@ -75,7 +75,7 @@ class GroupModal extends React.Component {
                 initialValue: model.group_type || 'class'
               })(<RadioGroup>
                 <Radio value='class'>类型</Radio>
-                <Radio value='collection'>归类</Radio>
+                <Radio value='collection'>归档</Radio>
               </RadioGroup>)}
             </FormItem>
             <FormItem
