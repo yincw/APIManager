@@ -6,7 +6,7 @@ import { apiStatus } from '../../utils/systemEnum';
 import { Modal, Select, Input, Form,
   Upload, Button, Tree, Checkbox, List,
   Table, Radio, message, Tooltip } from 'antd';
-import Muuri from 'muuri';
+// import Muuri from 'muuri';
 // import './less/DocumentIndex.less';
 import MarkdownIt from 'markdown-it';
 let md = new MarkdownIt();
@@ -71,7 +71,7 @@ class IndexContent extends React.Component {
   }
 
   componentDidMount() {
-    new Muuri('.waterfall');
+    // new Muuri('.waterfall');
   }
 }
 
