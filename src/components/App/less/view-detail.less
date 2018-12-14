@@ -160,6 +160,10 @@
 
   .description {
     margin: 0;
+
+    @media (min-width: 1065px) {
+      width: 530px;
+    }    
   }
 
   .doc-maturity {
@@ -246,6 +250,13 @@
           }
       }
 
+      &>ul,
+      &>ol {
+        @media (min-width: 1065px) {
+          width: 500px!important;
+        }
+      }
+
       &>pre {
         float: left;
         clear: right;
@@ -256,7 +267,7 @@
         width: 100%;
 
         @media (min-width: 1065px) {
-          width: e('calc(100% - 590px)');
+          width: e('calc(100% - 580px)');
         }
       }
 
@@ -274,6 +285,13 @@
       h2 {
         code {
           margin-left: 10px;
+        }
+      }
+
+      table {
+        th,
+        td {
+          word-break: normal;
         }
       }
 
