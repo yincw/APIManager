@@ -180,6 +180,7 @@
 
     li {
       width: 33%;
+      padding-right: 6px;
 
       position: relative;
       height: 54px;
@@ -189,8 +190,8 @@
         position: absolute;
         // left: 0px;
         // top: 0px;
-        left: 0px;
-        top: 14px;
+        left: -2px;
+        top: 15px;
         display: block;
         color: #fff;
 
@@ -203,11 +204,27 @@
       }
 
       .api-status {
+        &-1,
+        &-2,
+        &-3,
+        &-4 {
+          border-left: 1px solid transparent;
+
+          &:hover {
+            border-left-color: transparent;
+          }
+        }
         &-1 {
+          &:hover {
+            border-left-color: transparent;
+          }
           // 1: current
           .status {}
         }
         &-2 {
+          &:hover {
+            border-left-color: #24afff;
+          }
           // 2: new
           .status {
             // border-top-color: #24afff;
@@ -216,6 +233,9 @@
           }
         }
         &-3 {
+          &:hover {
+            border-left-color: #24afff;
+          }
           // 3: deprecated
           opacity: 0.5;
 
@@ -225,6 +245,9 @@
           .status {}
         }
         &-4 {
+          &:hover {
+            border-left-color: #e0b922;
+          }
           // 4: warning
           .status {
             // border-top-color: #e0b922;

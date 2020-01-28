@@ -4,7 +4,8 @@
   "description": "API 文档管理平台",
   "main": "./dist/main.js",
   "scripts": {
-    "rebuild": "npm i -S sqlite3 --build-from-source --runtime=electron --target=1.8.6 --dist-url=https://atom.io/download/electron",
+    "rebuild": "npm i sqlite3 --build-from-source --runtime=electron --target=1.8.6 --dist-url=https://atom.io/download/electron",
+    "postinstall": "install-app-deps",
     "start": "cross-env electronMode=dev PC_CLIENT=1 node --trace-warnings -r babel-register ./node_modules/webpack-dev-server/bin/webpack-dev-server --mode development --config webpack.config.dev.js",
     "start-main-dev": "npm run release-main && electron -r babel-register .",
     "start-main": "cross-env electronMode=preview npm run release-electron && electron -r babel-register .",
@@ -125,6 +126,7 @@
     "electron": "1.8.6",
     "electron-builder": "^20.10.0",
     "electron-log": "^2.2.14",
+    "electron-rebuild": "^1.8.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.3",

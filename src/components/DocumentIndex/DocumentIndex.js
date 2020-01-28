@@ -114,7 +114,6 @@ class DocumentIndex extends React.Component {
     var xDoc = this.getCurrentDocument();
     var xApis = sortApis(this.props.apis);
 
-    console.log(xApis)
     if(!xDoc.is_group_show) {
       return <XLink />
     }

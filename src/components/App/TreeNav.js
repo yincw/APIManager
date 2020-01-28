@@ -247,8 +247,8 @@ class TreeNav extends React.Component {
     </ContextMenuTrigger>
   }
 
-  handleSearchWord = (e) => {
-    const value = e.target.value;
+  handleSearchWord = (value) => {
+    // const value = e.target.value;
     this.setState({
       searchValue: value,
       expandedKeys: this.getDefaultExpandedKeys()
@@ -310,10 +310,13 @@ class TreeNav extends React.Component {
       <div className="view-tree">
         {this.hasDocuments() &&
         <Input.Search
-          value={this.state.searchValue}
+          // value={this.state.searchValue}
           placeholder="输入关键字"
-          onPressEnter={this.handlePressEnter}
-          onChange={this.handleSearchWord} />
+          enterButton
+          // onPressEnter={this.handlePressEnter}
+          // onSearch={this.handleSearchWord} 
+          onSearch={this.handleSearchWord} 
+          />
         }
         <SpinCtrl effects={['document/reqRetrieve', 'api/reqRetrieve']}>
           <Scrollbars autoHide>
